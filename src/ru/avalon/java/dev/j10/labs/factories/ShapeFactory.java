@@ -26,7 +26,7 @@ public interface ShapeFactory {
      */
     Shape getInstance();
 
-    static ShapeFactory random() {
+    public static ShapeFactory random() {
         return new RandomShapeFactory();
     }
 }

@@ -1,18 +1,22 @@
 package ru.avalon.java.dev.j10.labs.factories;
 
-import ru.avalon.java.dev.j10.labs.shapes.Shape;
+import java.util.Random;
+import ru.avalon.java.dev.j10.labs.shapes.*;
 
 /**
  * "Фабрика" фигур, возвращающая фигуры случайной природы.
  * <p>
  * Фабрика возвращает не только фигуры случайных типов, но
  * также обеспечивает случайную природу самих фигур. Другими,
- * словаим, если фабрика возвращает две фигуры одного и того
+ * словами, если фабрика возвращает две фигуры одного и того
  * же типа, их структура, с высокой вероятностью, будет
  * отличатся.
  */
 public class RandomShapeFactory implements ShapeFactory {
 
+
+    public RandomShapeFactory() {
+    }
     /*
      * TODO: Реализуйте класс 'RandomShapeFactory'
      * Подумайте о том, какой может быть реализация.
@@ -36,12 +40,36 @@ public class RandomShapeFactory implements ShapeFactory {
      *
      * @return новый экземпляр типа {@link Shape}.
      */
+    @Override
     public Shape getInstance() {
-
-        /*
-         * TODO: Реализовать метод 'getInstance()' класса 'RandomShapeFactory'
-         */
-
-        return null;
+        Shape shape = null;
+        Random r = new Random();
+        switch (r.nextInt(7)){
+            case 0:
+                shape = new Circle(r.nextInt(20) + 1);
+                break;
+            case 1:
+                shape = new Rectangle(r.nextInt(15) + 1, r.nextInt(15) + 1);
+                break;
+            case 2:
+                shape = new Rhombus(r.nextInt(15) + 1, r.nextInt(15) + 1);
+                break;
+            case 3:
+                shape = new Trapezium(r.nextInt(15) + 1, r.nextInt(15) + 1, r.nextInt(15) + 1, r.nextInt(15) + 1);
+                break;
+            case 4:
+                shape = new Triangle(r.nextInt(5) + 1, r.nextInt(5) + 1, r.nextInt(5) + 1);
+                break;
+            case 5:
+                shape = new Ellipse(r.nextInt(20) + 1, r.nextInt(20) + 1);
+                break;
+            case 6:
+                shape = new Point(r.nextInt(20) + 1, r.nextInt(20) + 1);
+                break;
+        }
+        return shape;
     }
+        /*
+        * TODO: Реализовать метод 'getInstance()' класса 'RandomShapeFactory'
+        */
 }

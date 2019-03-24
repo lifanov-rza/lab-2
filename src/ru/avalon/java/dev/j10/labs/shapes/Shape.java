@@ -12,8 +12,20 @@ package ru.avalon.java.dev.j10.labs.shapes;
  *
  * @see <a href="https://ru.wikipedia.org/wiki/%D0%A4%D0%B8%D0%B3%D1%83%D1%80%D0%B0_(%D0%B3%D0%B5%D0%BE%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D1%8F)">Фигура (геометрия)</a>
  */
-public interface Shape {
-
+public abstract class Shape {
+    
+    public static float PI = 3.14f;
+    
+    public static Shape shapeMaxArea(Shape[] shapes){
+        Shape shapeMaxArea = shapes[0];
+        for (int i = 0; i < shapes.length - 1; i++) {
+            if(shapeMaxArea.getArea() < shapes[i+1].getArea()) shapeMaxArea = shapes[i+1];
+        }
+        System.out.println("Фигура с макимальной площадью - " + shapeMaxArea.getName() + 
+                ". Площадь равна " + shapeMaxArea.getArea());
+        return shapeMaxArea;
+    }
+    
     /*
      * TODO: Закончить определение интерфейса 'Shape'
      *
@@ -35,7 +47,7 @@ public interface Shape {
      *
      * @see <a href="https://ru.wikipedia.org/wiki/%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D1%8C_%D1%84%D0%B8%D0%B3%D1%83%D1%80%D1%8B">Площадь фигуры</a>
      */
-    float getArea();
+    abstract public float getArea();
 
     /**
      * Возвращает угол поворота фигуры.
@@ -48,7 +60,9 @@ public interface Shape {
      *
      * @return угол поворота фигуры.
      */
-    int getRotation();
+    public int getRotation() {
+        return 0;
+    }
 
     /*
      * TODO: изменить определение метотода 'getRotation()'
@@ -56,4 +70,13 @@ public interface Shape {
      * классам, не поддерживающим вращение, не требовалось
      * переопределять данный метод.
      */
+    
+    /**
+     * Возвращает имя фигуры.
+     *
+     * @return имя фигуры.
+     */
+    abstract public String getName();
+    
+
 }
