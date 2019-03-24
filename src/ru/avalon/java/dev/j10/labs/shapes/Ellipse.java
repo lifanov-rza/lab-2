@@ -10,8 +10,19 @@ package ru.avalon.java.dev.j10.labs.shapes;
  *
  * @see <a href="https://ru.wikipedia.org/wiki/%D0%AD%D0%BB%D0%BB%D0%B8%D0%BF%D1%81">Эллипс</a>
  */
-public interface Ellipse {
+public class Ellipse extends Shape {
+    private float a; // Большая полуось
+    private float b; // Малая полуось
 
+    public Ellipse(float a, float b) {
+        this.a = a;
+        this.b = b;
+    }
+    
+    public Ellipse(float r) {
+        this.a = r;
+        this.b = r;
+    }
     /*
      * TODO: Закончить определение интерфейса 'Ellipse'
      *
@@ -25,5 +36,18 @@ public interface Ellipse {
      *
      * @return длина эллипса
      */
-    float getLength();
+    float getLength() {
+        return (float)(a * (2.28 * Math.pow((b/a), 1.44) + 4));
+    }
+    
+    @Override
+    public String getName() {
+        return "Эллипс";
+    }
+    
+    @Override
+    public float getArea() {
+        return PI * a*b;
+    }
+    
 }
